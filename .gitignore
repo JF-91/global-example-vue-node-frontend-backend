@@ -1,0 +1,3 @@
+./vue-app/docker-compose.yml
+./vue-app/dockerfile
+./vue-app/node_modules

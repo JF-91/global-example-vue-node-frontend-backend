@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  node-app:
+    build: 
+      context: ./node-app
+      dockerfile: Dockerfile.server
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./node-app:/app
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+  vue-app:
+    build: 
+      context: ./vue-app
+      dockerfile: Dockerfile.client
+    ports:
+      - "8080:80"
+    volumes:
+      - ./vue-app:/app
+  mysql-db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: mydb
+    ports:  
+      - "3306:3306"
+    volumes:
+      - mysql-db:/var/lib/mysql
+volumes:
+  mysql-db:
